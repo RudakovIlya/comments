@@ -41,7 +41,7 @@ export const Comments = ({currentUserId}) => {
 
   const updateComment = (text, commentId) => {
     updateCommentApi(text).then(() => {
-      const updateComments = backComments.map(comment => comment.id === commentId ? {...comment, body:text} : comment)
+      const updateComments = backComments.map(comment => comment.id === commentId ? {...comment, body: text} : comment)
       setBackComments(updateComments)
       setActiveComment(null)
     })
@@ -58,7 +58,6 @@ export const Comments = ({currentUserId}) => {
   }
 
   useEffect(() => {
-    // Получение постов
     getCommentsApi().then(data => {
       setTimeout(() => {
         setBackComments(data)
@@ -70,7 +69,10 @@ export const Comments = ({currentUserId}) => {
     <div className={'comments'}>
       <h3 className={'comments-title'}>Comments</h3>
       <div className={'comment-form-title'}>Write Comment</div>
-      <CommentForm submitLabel={'Write'} handleSubmit={addComment}/>
+      <CommentForm
+        submitLabel={'Write'}
+        handleSubmit={addComment}
+      />
       <div className={'comments-container'}>
         {
           rootComments.map(rootComment => (

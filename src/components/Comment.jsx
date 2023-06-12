@@ -41,12 +41,27 @@ export const Comment = ({
           <div className="comment-author">{comment.username}</div>
           <div>{createdAt}</div>
         </div>
-        {!isEditing && <div className={'comment-text'}>{comment.body}</div>}
-        {isEditing && <CommentForm submitLabel={'Update'} hasCancelButton initialText={comment.body} handleSubmit={(text) => updateComment(text, comment.id)} handleCancel={() => setActiveComment(null)}/> }
+        {!isEditing && (
+          <div className={'comment-text'}>{comment.body}</div>
+        )}
+        {isEditing && (
+          <CommentForm
+            submitLabel={'Update'}
+            hasCancelButton
+            initialText={comment.body}
+            handleSubmit={(text) => updateComment(text, comment.id)}
+            handleCancel={() => setActiveComment(null)}
+          />
+        )}
         <div className="comment-actions">
-          {canReply && <button className="comment-action" onClick={() => {
-            setActiveComment({id: comment.id, type: 'replying'})
-          }}>Reply</button>}
+          {canReply && (
+            <button
+              className="comment-action"
+              onClick={() => {
+                setActiveComment({id: comment.id, type: 'replying'})
+              }}
+            >Reply</button>
+          )}
           {canEdit && <button className="comment-action" onClick={() => {
             setActiveComment({id: comment.id, type: 'editing'})
           }}>Edit</button>}
